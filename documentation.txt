@@ -1,0 +1,19 @@
+***Projeto Marketplace***
+
+-Este arquivo contem algumas anotações sobre o projeto criado.
+
+	- Arquitetura de software do projeto: MVC.
+		-Estudar sobre o conceito do MVC apoós o projeto.
+	
+	- Estudar a modelagem de dados com o Professor da Bóson treinamentos, pois, se faz necessário modelar
+	o banco de dados e modelar o nosso sistema.
+
+	- Banco de dados usado: MySQL.
+ 	
+	-Anotações referentes a versão 0.1.
+		-Estudar Vercionamento tambem.
+-CONFIGURAÇÕES DO PROJETO.
+	-Após ter criado as pastas "api" e "Front-end", iniciei os modulos no npm.
+	-Baixei os modulos: "express", "cors"(Estudar sobre), "mysql"(Tambem estudar).
+	-alterei o tipo de importação do projeto para: module: nativo do JS.
+		-"type":"modul" -> o padrão que ja vem no NPM é o "commonjs"
