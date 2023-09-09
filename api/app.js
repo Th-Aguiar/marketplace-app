@@ -1,10 +1,16 @@
 import express from "express";
 import cors from "cors";
-const port = 3000;
+import productsRouter from "./router/products.js";
 
+const port = 3000;
 const app = express();
 
-app.use(cors())
+//Configurações do app
+app.use(express.json());
+app.use(cors());
+
+//Req
+app.use("/", productsRouter);
 
 app.listen(port, () => {
     console.log("Servidor rodando na porta 3000");

@@ -12,8 +12,24 @@
  	
 	-Anotações referentes a versão 0.1.
 		-Estudar Vercionamento tambem.
--CONFIGURAÇÕES DO PROJETO.
+
+09/09/2023
+-CONFIGURAÇÕES DO PROJETO - BACKEND.
 	-Após ter criado as pastas "api" e "Front-end", iniciei os modulos no npm.
 	-Baixei os modulos: "express", "cors"(Estudar sobre), "mysql"(Tambem estudar).
-	-alterei o tipo de importação do projeto para: module: nativo do JS.
-		-"type":"modul" -> o padrão que ja vem no NPM é o "commonjs"
+	-alterei o tipo de importação do projeto para: module(nativo do JS).
+		-"type":"module" -> o padrão que ja vem no NPM é o "commonjs"
+
+	-Configurei o driver do banco de dados "db.js" para o devido acesso.
+			- import mysql from "mysql";
+
+			export const db = mysql.createConnection({
+    				host: "localhost",
+    				user: "root",
+   				password: "Aguiar@123",
+    				database: "db_marketplace"
+			});
+	
+	-Configurei a pasta "router" com as rotas da aplicação.
+	-Configurei o controlador - "products.js" que faz o gerenciamento da requizição com o banco de dados
+	-Configurei o "app" adicionando o "app.use("/", productsRouter);" - req da pagina HOME
