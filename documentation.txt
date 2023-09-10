@@ -15,8 +15,11 @@
 
 09/09/2023
 -CONFIGURAÇÕES DO PROJETO - BACKEND.
+	
 	-Após ter criado as pastas "api" e "Front-end", iniciei os modulos no npm.
+	
 	-Baixei os modulos: "express", "cors"(Estudar sobre), "mysql"(Tambem estudar).
+	
 	-alterei o tipo de importação do projeto para: module(nativo do JS).
 		-"type":"module" -> o padrão que ja vem no NPM é o "commonjs"
 
@@ -26,10 +29,32 @@
 			export const db = mysql.createConnection({
     				host: "localhost",
     				user: "root",
-   				password: "Aguiar@123",
+   					password: "Aguiar@123",
     				database: "db_marketplace"
 			});
 	
 	-Configurei a pasta "router" com as rotas da aplicação.
+	
 	-Configurei o controlador - "products.js" que faz o gerenciamento da requizição com o banco de dados
+	
 	-Configurei o "app" adicionando o "app.use("/", productsRouter);" - req da pagina HOME
+
+
+10/09/2023
+-CONFIGURAÇÕES DO PROJETO - FRONT END.
+
+	-Inicializamos baixando todas as dependencias necessárias para o projeto.
+		-Axios, Vite-React, React-icons, React-toastify, Styled-components.
+
+	-Baixei a fonte "Playfair display".
+
+	-Limpamos todos os arquivos desnecessários quem vem após a instalação do Vite.
+
+	-Começamos a estilização usando o "styled-components"
+		-configurações de estilo global feito no arquivo JS chamado "globals" dentro de src.
+	
+	-Criamos um componente React dentro do arquivo"App.jsx" de estilização.
+
+	-Criei a pasta "components" para a criação do Form.
+
+	-Começamos a estilizar o formulário com o styled-component.
