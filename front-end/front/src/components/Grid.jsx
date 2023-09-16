@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {FaTrash, FaEdit} from "react-icons/fa";
 
 const Table = styled.table`
     width: 100%;
@@ -25,7 +26,10 @@ const Th = styled.th`
     padding-bottom: 5px;
 `;
 
-const Grid = () => {
+const Td = styled.td`
+    padding-top: 15px;
+`;
+const Grid = ({products}) => {
 
     return(
         <Table>
@@ -37,11 +41,21 @@ const Grid = () => {
                 </Tr>
             </Thead>
             <Tbody>
-                <Tr>
-                    <td>Chaves</td>
-                    <td>$2.50</td>
-                    <td>50</td>
-                </Tr>
+               
+               {products.map( (obj) => (
+                        <Tr key={obj.ID_product}>
+                            <Td width="30%">{obj.product_name}</Td>
+                            <Td width="30%">{obj.price}</Td>
+                            <Td width="20%">{obj.stock}</Td>
+                            <Td>
+                                <FaTrash />
+                            </Td>
+                            <Td>
+                                <FaEdit />
+                            </Td>
+                        </Tr>
+                ))}
+               
             </Tbody>
         </Table>
     );

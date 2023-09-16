@@ -58,3 +58,35 @@
 	-Criei a pasta "components" para a criação do Form.
 
 	-Começamos a estilizar o formulário com o styled-component.
+
+	-16/09/2023
+
+	-Criamos o grid da tabela de produtos 
+
+	- Agora estamos editando no App principal do Front a interação com o Back usando o axios.
+
+	-Integrei o Front com o Back usando o Axios.
+
+	-usamos o useEffect, useState, async await, props.
+			const [products, setProducts] = useState([]);
+			
+			//Requisitar no Back end
+			const getProducts = async () => {
+				
+				try{
+				
+				const res = await axios.get("http://localhost:3000/"); 
+				setProducts(res.data);
+
+				}catch(error){
+				console.log(error);
+				}
+
+			};
+
+			//Executar quando o front for chamado.
+			useEffect(() => {
+				getProducts();
+				console.log(products)
+			}, [setProducts]);
+	
