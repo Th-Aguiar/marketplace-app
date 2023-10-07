@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const FormContainer = styled.form`
     display: flex;
@@ -39,12 +41,63 @@ const Button = styled.button`
     font-weight: bold;
 `;
 
-const Form = ({ onEdit }) => {
+const Form = ({ onEdit, getProducts, setOnEdit }) => {
 
     const ref = useRef();
 
+    //atribui os valores no input após a mudança no OnEdit para ser editado
+    useEffect(() =>{
+        if(onEdit){
+            const product = ref.current;
+            console.log(product)
+
+            product.product_name.value = onEdit.product_name;
+            product.price.value = onEdit.price;
+            product.stock.value = onEdit.stock;
+            product.phone.value = onEdit.phone;
+        }
+    },[onEdit]);
+
+    //lidar com envio de dados para a api
+    const handleSubmit = async (ev) =>{
+        //previnir o carregamento padrao apos o envio
+        ev.preventDefault();
+
+        //Trabalhar com o elemento DOM atual
+        const product = ref.current;
+
+        //Verificação de dados para prevenir valores nulos.
+        if(!product.product_name.value || !product.price.value || !product.stock.value || !product.phone.value) {
+            return toast.warn("Preencha todos os campos por favor! Não poder haver espaço em branco");
+        }
+
+        //enviar a edição
+        if(onEdit){
+            //Usamos o axios para integração com a api
+            await axios.put("http://localhost:3000/" + onEdit.id, {
+                product_name: product.product_name.value,
+                price: product.price.value,
+                stock: product.stock.value,
+                phone: product.phone.value
+            }).then( ({data}) => toast.success(data) ).catch( ({data}) => toast.error(data) );
+        }
+
+        //Limpar os inputs das edições
+        product.product_name.value = ""; 
+        product.price.value = "";
+        product.stock.value = "";
+        product.phone.value = "";
+
+        //Colocar a edição null novamente
+        setOnEdit(null);
+
+        //Carregar novamente os dados em tela
+        getProducts();
+        
+    }
+
     return(
-        <FormContainer method="POST">
+        <FormContainer ref={ref} onSubmit={handleSubmit}>
             <InputArea>
                 <Label>Nome</Label>
                 <Input name="product_name" type="text"/>

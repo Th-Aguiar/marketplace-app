@@ -90,3 +90,87 @@
 				console.log(products)
 			}, [setProducts]);
 	
+	06/10/2023
+
+	- Finalizei o back end, implementando o CRUD basico.
+
+	- Baixei o Insomnia para testar a api
+
+	- criado essas funções para integrar com o banco de dados
+	export const updateProducts = (req, res) => {
+    //Query de busca SQL
+   const q = "UPDATE products SET `product_name` = ?, `price`= ?, `stock`=?, `phone`=? WHERE `ID_product`=?";
+
+   //Valores da requisição
+   const values = [
+        req.body.product_name,
+        req.body.price,
+        req.body.stock,
+        req.body.phone
+   ];
+
+   //req.params.VARIAVEL pega um nome dinamico na url passado pelo rota.
+   db.query(q, [...values, req.params.ID_product], (error) => {
+        //verificar se aconteceu um erro
+        if(error) return res.json(error);
+
+        //Retorna um status e uma mensagem
+        return res.status(200).json("Atualizado com sucesso");
+   })
+}
+
+ 
+
+ -Terminei de fazer algumas rotas para serem observadas qualquer requisicao
+		//Fazer um adicionamento de dados no DB.
+		router.post("/", addProducts);
+		//Deletar um dado - :ID_product = variavel dinamica
+		router.delete("/:ID_product", deleteProduct);
+		//Atualizar um dado - :ID_product = variavel dinamica
+		router.put("/:ID_product", updateProducts);
+
+07/10/2023
+	-Criamos funçoes para integrar a API com o Front end
+
+	-criação de um crud no react
+	
+	//lidar com envio de dados para a api
+    const handleSubmit = async (ev) =>{
+        ev.preventDefault();
+
+        const product = ref.current;
+
+        //Verificação de dados para prevenir valores nulos.
+        if(!product.product_name.value || !product.price.value || !product.stock.value || !product.phone.value) {
+            return toast.warn("Preencha todos os campos por favor! Não poder haver espaço em branco");
+        }
+    }
+
+	//Lidar com exclusão
+    const handleDelete = async ( id ) => {
+        await axios.delete("http://localhost:3000/" + id).then( ({data}) => {
+            console.log(data)
+
+            //Filtra o Elemento a ser deletado
+            const newArray = products.filter((product) => product.ID_product !== id )
+
+            //Retorna o novo array filtrado das informações para o APP renderizar
+            setProducts(newArray);
+
+            //Exibir uma mensagem de sucesso
+            toast.success(data)
+
+        }).catch((data) => toast.error(data));
+
+    }
+	 //Lidar com a edição
+    const handleEdit = (item) =>{
+        setOnEdit(item);
+    }
+
+
+	-Usamos o axios que permite fazer essa intregração 
+
+	-Estudar sobre o useRef pois nao havia compreendido muito bem o motivo dos dados serem editados dentro do input
+
+	-Criamos a função para enviar dados ao banco de dados ou editar

@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import {FaTrash, FaEdit} from "react-icons/fa";
+import axios from "axios";
+import {toast} from "react-toastify"
+
 
 const Table = styled.table`
     width: 100%;
@@ -29,8 +32,32 @@ const Th = styled.th`
 const Td = styled.td`
     padding-top: 15px;
 `;
-const Grid = ({products}) => {
 
+//Grid recebe como parametro um conjunto de array contendo os produtos do Banco de dados
+const Grid = ({products, setProducts, setOnEdit}) => {
+
+    //Lidar com exclusão
+    const handleDelete = async ( id ) => {
+        await axios.delete("http://localhost:3000/" + id).then( ({data}) => {
+            console.log(data)
+
+            //Filtra o Elemento a ser deletado
+            const newArray = products.filter((product) => product.ID_product !== id )
+
+            //Retorna o novo array filtrado das informações para o APP renderizar
+            setProducts(newArray);
+
+            //Exibir uma mensagem de sucesso
+            toast.success(data)
+
+        }).catch((data) => toast.error(data));
+
+    }
+
+    //Lidar com a edição
+    const handleEdit = (item) =>{
+        setOnEdit(item);
+    }
     return(
         <Table>
             <Thead>
@@ -48,10 +75,10 @@ const Grid = ({products}) => {
                             <Td width="30%">{obj.price}</Td>
                             <Td width="20%">{obj.stock}</Td>
                             <Td>
-                                <FaTrash />
+                                <FaTrash onClick={ () => handleDelete(obj.ID_product)} />
                             </Td>
                             <Td>
-                                <FaEdit />
+                                <FaEdit onClick={ () => handleEdit(obj)} />
                             </Td>
                         </Tr>
                 ))}

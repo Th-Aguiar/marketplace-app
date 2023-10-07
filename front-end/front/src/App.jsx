@@ -25,11 +25,11 @@ function App() {
   const [products, setProducts] = useState([]);
   const [onEdit, setOnEdit] = useState(null);
 
-  //Requisitar no Back end
+  //Requisitar dados no Back end
   const getProducts = async () => {
     
     try{
-      
+      //Axios faz uma requisição para o Backend
       const res = await axios.get("http://localhost:3000/"); 
       setProducts(res.data);
 
@@ -51,8 +51,8 @@ function App() {
 
         <Main>
           <h1>Cadastro de usuários</h1>
-          <Form />
-          <Grid products={products} />
+          <Form onEdit={onEdit} setOnEdit={setOnEdit} getProducts={getProducts}/>
+          <Grid products={products} setOnEdit={setOnEdit}/>
         </Main>
     </>
   );
