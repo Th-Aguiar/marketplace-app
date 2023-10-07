@@ -8,6 +8,8 @@ const app = express();
 //Configurações do app
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({extended: true}));
+
 
 //Req
 app.use("/", productsRouter);

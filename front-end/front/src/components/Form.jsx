@@ -47,7 +47,7 @@ const Form = ({ onEdit }) => {
         <FormContainer method="POST">
             <InputArea>
                 <Label>Nome</Label>
-                <Input name="name" type="text"/>
+                <Input name="product_name" type="text"/>
             </InputArea>
             <InputArea>
                 <Label>Preço</Label>
