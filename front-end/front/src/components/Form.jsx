@@ -74,12 +74,20 @@ const Form = ({ onEdit, getProducts, setOnEdit }) => {
         //enviar a edição
         if(onEdit){
             //Usamos o axios para integração com a api
-            await axios.put("http://localhost:3000/" + onEdit.id, {
+            await axios.put("http://localhost:3000/" + onEdit.ID_product, {
                 product_name: product.product_name.value,
                 price: product.price.value,
                 stock: product.stock.value,
                 phone: product.phone.value
             }).then( ({data}) => toast.success(data) ).catch( ({data}) => toast.error(data) );
+        }else{
+            //Enviar uma requisição de post com o axios para a api
+            await axios.post("http://localhost:3000", {
+                product_name: product.product_name.value,
+                price: product.price.value,
+                stock: product.stock.value,
+                phone: product.phone.value
+            }).then( ({data}) => toast.success(data) ).catch( ({data}) => toast.error(data));
         }
 
         //Limpar os inputs das edições

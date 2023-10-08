@@ -174,3 +174,9 @@
 	-Estudar sobre o useRef pois nao havia compreendido muito bem o motivo dos dados serem editados dentro do input
 
 	-Criamos a função para enviar dados ao banco de dados ou editar
+
+	08/10/2023
+
+		- Finalizamos a aplicação com tudo funcional
+
+		-Usamos o Toastify container para animar as mensagens

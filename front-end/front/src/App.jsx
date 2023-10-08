@@ -7,7 +7,9 @@ import GlobalStyle from "./globals";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+//Notificação personalizada
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 //Styled Components
 const Main = styled.main`
@@ -54,6 +56,8 @@ function App() {
           <Form onEdit={onEdit} setOnEdit={setOnEdit} getProducts={getProducts}/>
           <Grid products={products} setOnEdit={setOnEdit}/>
         </Main>
+        
+        <ToastContainer autoClose={3000} position={toast.POSITION.BOTTOM_LEFT} />
     </>
   );
 }

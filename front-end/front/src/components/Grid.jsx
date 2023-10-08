@@ -53,6 +53,7 @@ const Grid = ({products, setProducts, setOnEdit}) => {
         }).catch((data) => toast.error(data));
 
     }
+    
 
     //Lidar com a edição
     const handleEdit = (item) =>{
@@ -69,7 +70,7 @@ const Grid = ({products, setProducts, setOnEdit}) => {
             </Thead>
             <Tbody>
                
-               {products.map( (obj) => (
+            { products.map( (obj) => (
                         <Tr key={obj.ID_product}>
                             <Td width="30%">{obj.product_name}</Td>
                             <Td width="30%">{obj.price}</Td>
@@ -81,7 +82,7 @@ const Grid = ({products, setProducts, setOnEdit}) => {
                                 <FaEdit onClick={ () => handleEdit(obj)} />
                             </Td>
                         </Tr>
-                ))}
+                ) ) }
                
             </Tbody>
         </Table>
